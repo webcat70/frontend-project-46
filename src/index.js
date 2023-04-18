@@ -1,25 +1,30 @@
 import _ from 'lodash';
 
-const genDiff = (file1, file2) => {
-	const keys = _.sortBy(_.union(Object.keys(file1), Object.keys(file2)));
+const getData = (filepath) => fs.readFileSync(path.resolve(process.cwd(), filepath), 'utf8');
+
+const genDiff = (filepath1, filepath2) => {
+
+	const data1 = getData(filepath1);
+  const data2 = getData(filepath2);
+	const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
 	console.log(keys)
 
 	const result = keys.map((key) => {
-		if (!_.has(file1[key]) && _.has(file2[key])) {
-			return { key, type: 'added', value: file2[key] };
+		if (!_.has(filepath1[key]) && _.has(filepath2[key])) {
+			return { key, type: 'added', value: filepath2[key] };
 		}
-		if (_.has(file1[key]) && !_.has(file2[key])) {
-			return { key, type: 'deleted', value: file1[key] };
+		if (_.has(filepath1[key]) && !_.has(filepath2[key])) {
+			return { key, type: 'deleted', value: filepath1[key] };
 		}
 		// if (_.has(file1[key]) && _.has(file2[key])) {
 		// 	return {key, type: '', value}
 		// }
-		if (file1[key] !== file2[key]) {
-			return { key, type: 'changed', valueBefore: file1[key], valueAfter: file2[key] };
+		if (filepath1[key] !== filepath2[key]) {
+			return { key, type: 'changed', valueBefore: filepath1[key], valueAfter: filepath2[key] };
 		}
-		return { key, type: 'unchanged', value: file1[key] };
+		return { key, type: 'unchanged', value: filepath1[key] };
 	});
 	return result;
 };
-genDiff(filepath1, filepath2)
+
 export default genDiff;
