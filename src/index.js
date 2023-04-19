@@ -12,7 +12,6 @@ const genDiff = (filepath1, filepath2) => {
 
 	const data1 = JSON.parse(getData(filepath1));
 	const data2 = JSON.parse(getData(filepath2));
-	//return buildTree(data1, data2);
 	return stylish(buildTree(data1, data2));
 };
 export default genDiff;

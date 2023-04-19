@@ -17,7 +17,6 @@ const buildTree = (obj1, obj2) => {
 		}
 		return { key, type: 'unchanged', value: obj1[key] };
 	});
-	//return `{/n ${result.join('\n')} \n}`;
 	return result;
 };
 export default buildTree;
