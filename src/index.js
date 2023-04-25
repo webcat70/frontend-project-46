@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
-import buildTree from './buildTree.js';
 import path from 'node:path';
+import buildTree from './buildTree.js';
 //import parse from './parse.js';
 import stylish from './stylish.js';
 
