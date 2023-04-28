@@ -10,6 +10,5 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 test('check default compare', () => {
-	expect(genDiff('__fixture__/filepath1.json', '__fixture__/filepath2.json')).toEqual(readFile('expectFilesStylish.txt'),
-	);
+	expect(genDiff('__fixtures__/filepath1.json', '__fixtures__/filepath2.json')).toEqual(readFile('expectJson.txt'),);
 });
