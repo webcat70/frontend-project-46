@@ -9,7 +9,14 @@
 
 Comparing simple files
 
-gendiff fixtures/filepath1.json fixtures/filepath2.json
+JSON
+
+gendiff __fixtures__/filepath1.json __fixtures__/filepath2.json
 
 [![asciicast](https://asciinema.org/a/0cSbQj1iKHYRapRPcNB5HXC5j.svg)](https://asciinema.org/a/0cSbQj1iKHYRapRPcNB5HXC5j)
 
+YAML
+
+gendiff __fixtures__/filepath1.yaml __fixtures__/filepath2.yaml
+
+[![asciicast](https://asciinema.org/a/PEvUMcTrjkijuSFDPWmVLBrvY.svg)](https://asciinema.org/a/PEvUMcTrjkijuSFDPWmVLBrvY)
