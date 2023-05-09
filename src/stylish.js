@@ -1,31 +1,55 @@
-const stringify = (val, depth) => {
-  if (!_.isObject(val)) {
-    return val;
-  }
+import _ from 'lodash';
 
-  const keys = Object.keys(val);
-  const currentDepth = (depth + 1) * 4;
-  const result = keys.map((el) => {
-    const currentValue = `${stringify(val[el], depth + 1)}`;
-    return `${' '.repeat(currentDepth + 2)}  ${el}: ${currentValue}`;
-  });
+const currentIndent = (depth, intend = 4) => ' '.repeat(intend * depth - 2);
 
-	return [`'{', ...result, ${ ' '.repeat(currentDepth) }}`].join('\n');
+const stringify = (someEntity, spaceCount) => {
+  const iter = (current, depth) => {
+    if (!_.isObject(current)) {
+      return current;
+    }
+    const lines = Object.entries(current).map(
+      ([key, value]) => `${currentIndent(depth + 1)}  ${key}: ${iter(value, depth + 1)}`,
+    );
+    return [`'{', ...lines, ${currentIndent(depth)}  }`].join('\n');
+  };
+  return iter(someEntity, spaceCount);
 };
 
-const stylish = (arr) => {
-	const result = arr.map((elem) => {
-		if (elem.type === 'added') {
-			return `  + ${elem.key}: ${elem.value}`;
-		}
-		if (elem.type === 'deleted') {
-			return `  - ${elem.key}: ${elem.value}`;
-		}
-		if (elem.type === 'changed') {
-			return `  - ${elem.key}: ${elem.valueBefore}\n  + ${elem.key}: ${elem.valueAfter}`;
-		}
-		return `    ${elem.key}: ${elem.value}`;
-	});
-	return `{\n${result.join('\n')}\n}`;
+const stylish = (data) => {
+  const iter = (tree, depth) => tree.map((node) => {
+    switch (node.type) {
+      case 'added':
+        return `${currentIndent(depth)} + ${node.key}: ${stringify(
+          node.value,
+          depth,
+        )}\n`;
+      case 'deleted':
+        return `${currentIndent(depth)}- ${node.key}: ${stringify(
+          node.value,
+          depth,
+        )}\n`;
+      case 'unchanged':
+        return `${currentIndent(depth)}  ${node.key}: ${stringify(
+          node.value,
+          depth,
+        )}\n`;
+      case 'changed':
+        return `${currentIndent(depth)}- ${node.key}: ${stringify(
+          node.valueBefore,
+          depth,
+        )}\n${currentIndent(depth)}+ ${node.key}: ${stringify(
+          node.valueAfter,
+          depth,
+        )}\n`;
+      case 'nested':
+        return `${currentIndent(depth)}  ${node.key}: {\n${iter(
+          node.children,
+          depth + 1,
+        ).join('')}${currentIndent(depth)}  }\n`;
+      default:
+        throw new Error(`Type is not defined - ${node.type}`);
+    }
+  });
+  return `{\n${iter(data, 1).join('')}}`;
 };
 export default stylish;
