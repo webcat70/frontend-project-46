@@ -20,3 +20,10 @@ YAML
 gendiff __fixtures__/filepath1.yaml __fixtures__/filepath2.yaml
 
 [![asciicast](https://asciinema.org/a/PEvUMcTrjkijuSFDPWmVLBrvY.svg)](https://asciinema.org/a/PEvUMcTrjkijuSFDPWmVLBrvY)
+
+
+Recursive comparison
+
+gendiff __fixtures__/filepath1.yaml __fixtures__/filepath2.yaml
+
+[![asciicast](https://asciinema.org/a/zTFb6srqjGT7j48J4DLyXBEUZ.svg)](https://asciinema.org/a/zTFb6srqjGT7j48J4DLyXBEUZ)

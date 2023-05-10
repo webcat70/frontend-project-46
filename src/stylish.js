@@ -10,7 +10,7 @@ const stringify = (someEntity, spaceCount) => {
     const lines = Object.entries(current).map(
       ([key, value]) => `${currentIndent(depth + 1)}  ${key}: ${iter(value, depth + 1)}`,
     );
-    return [`'{', ...lines, ${currentIndent(depth)}  }`].join('\n');
+    return ['{', ...lines, `${currentIndent(depth)}  }`].join('\n');
   };
   return iter(someEntity, spaceCount);
 };
@@ -19,7 +19,7 @@ const stylish = (data) => {
   const iter = (tree, depth) => tree.map((node) => {
     switch (node.type) {
       case 'added':
-        return `${currentIndent(depth)} + ${node.key}: ${stringify(
+        return `${currentIndent(depth)}+ ${node.key}: ${stringify(
           node.value,
           depth,
         )}\n`;
