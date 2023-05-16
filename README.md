@@ -27,3 +27,10 @@ Recursive comparison
 gendiff __fixtures__/filepath1.yaml __fixtures__/filepath2.yaml
 
 [![asciicast](https://asciinema.org/a/zTFb6srqjGT7j48J4DLyXBEUZ.svg)](https://asciinema.org/a/zTFb6srqjGT7j48J4DLyXBEUZ)
+
+
+Plain format
+
+gendiff --format plain  __fixtures__/filepath1.json __fixtures__/filepath2.json
+
+[![asciicast](https://asciinema.org/a/RI3kWHXMsmoM8FvsPMtyqSVKK.svg)](https://asciinema.org/a/RI3kWHXMsmoM8FvsPMtyqSVKK)

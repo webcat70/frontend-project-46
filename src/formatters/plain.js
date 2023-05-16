@@ -3,7 +3,7 @@ import _ from 'lodash';
 const stringify = (value) => {
 	if (_.isPlainObject(value) && value !== null) return "[complex value]";
 	if (typeof value === "string") {
-		return '${value}';
+		return `'${value}'`;
 	}
 	if (value === null) {
 		return null;
@@ -26,7 +26,7 @@ const getPlain = (data) => {
 					case "deleted":
 						return `Property '${property}' was removed`;
 					case "changed":
-						return `Property '${property}' was updated.From ${stringify(
+						return `Property '${property}' was updated. From ${stringify(
 							node.valueBefore
 						)
 							} to ${stringify(node.valueAfter)}`;
