@@ -34,3 +34,10 @@ Plain format
 gendiff --format plain  __fixtures__/filepath1.json __fixtures__/filepath2.json
 
 [![asciicast](https://asciinema.org/a/RI3kWHXMsmoM8FvsPMtyqSVKK.svg)](https://asciinema.org/a/RI3kWHXMsmoM8FvsPMtyqSVKK)
+
+
+Сonclusion in json
+
+node bin/gendiff.js --format json __fixtures__/filepath1.json __fixtures__/filepath2.json
+
+[![asciicast](https://asciinema.org/a/Lml2z0IWMexa0Ljc7yUPYabnE.svg)](https://asciinema.org/a/Lml2z0IWMexa0Ljc7yUPYabnE)

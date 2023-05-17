@@ -23,5 +23,5 @@ test('check plain format compare', () => {
 });
 
 test('check json format compare', () => {
-	expect(genDiff('__fixtures__/filepath1.json', '__fixtures__/filepath2.json', 'json')).toEqual(readFile('expectJson.txt'),);
+	expect(genDiff('__fixtures__/filepath1.json', '__fixtures__/filepath2.json', 'json')).toEqual(readFile('expectJsonformat.txt'),);
 });
