@@ -21,3 +21,7 @@ test('check default compare yaml files', () => {
 test('check plain format compare', () => {
 	expect(genDiff('__fixtures__/filepath1.json', '__fixtures__/filepath2.json', 'plain')).toEqual(readFile('expectJsonPlain.txt'),);
 });
+
+test('check json format compare', () => {
+	expect(genDiff('__fixtures__/filepath1.json', '__fixtures__/filepath2.json', 'json')).toEqual(readFile('expectJson.txt'),);
+});
